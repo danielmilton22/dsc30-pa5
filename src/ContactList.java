@@ -5,7 +5,7 @@ public class ContactList {
     // Add instance variables here
 
     public boolean createContact(Person person) {
-        return true
+        return true;
     }
 
     public boolean lookupContact(String name) {
