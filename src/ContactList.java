@@ -2,19 +2,22 @@ import java.util.*;
 
 public class ContactList {
 
-    // Add instance variables here
+    Person person;
 
     public boolean createContact(Person person) {
-        return true;
+        this.person = person;
+        return false;
     }
 
     public boolean lookupContact(String name) {
-        return true;
+        return false;
     }
+
 
     public Person getContact(String name) {
         return null;
     }
+
 
     public Person[] getContactByRange(String start, String end) {
         return null;
