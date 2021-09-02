@@ -16,7 +16,6 @@ public class ContactList {
             endOfWord = false;
             brachChildren = new ContactList.Node[R];
         }
-
     }
 
     public ContactList() {
@@ -73,6 +72,32 @@ public class ContactList {
 
     // delete
     public boolean deleteContact(String name) {
+        char deleteHolder = 'a';
+        Node parent = root;
+        Node delete = null;
+        if (name.length() == 0 || name == null) {
+            return false;
+        }
+        for (char c: name.toCharArray()) {
+            Node child = parent.brachChildren[(int) c];
+            if (parent.brachChildren.length > 1 || parent.endOfWord) {
+                delete = parent;
+                deleteHolder = c;
+            }
+            if (child == null) {
+                return false;
+            }
+            parent = child;
+        }
+        if (parent.endOfWord == false) {
+            return false;
+        }
+        if (parent.brachChildren.length == 0) {
+            delete.brachChildren[(int) deleteHolder] = null;
+        } else {
+            parent.endOfWord = false;
+        }
+        nelems--;
         return true;
     }
 

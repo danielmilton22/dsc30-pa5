@@ -77,4 +77,16 @@ public class contactTesting {
 
     }
 
+    @Test
+    public void contactDeleteContactTest() {
+        person1.addPhoneNumber("3412343543");
+        person1.addPhoneNumber("34123435543");
+        person1.addPhoneNumber("3241253637");
+        person1.addPhoneNumber("7653545435");
+        contacts.createContact(person1);
+        assertEquals(true, person1.addPhoneNumber("1545675436"));
+        assertEquals(true, contacts.deleteContact("Daniel"));
+        assertEquals(false, contacts.deleteContact("Daniel"));
+
+    }
 }
