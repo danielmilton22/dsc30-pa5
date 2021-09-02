@@ -5,8 +5,6 @@ public class ContactList {
     private static final int R = 128;
     private Node root;
     int nelems;
-    String start;
-    String end;
     ArrayList<String> nameList = new ArrayList<String>();
     ArrayList<Person> contactList = new ArrayList<Person>();
     ArrayList<String> numberList = new ArrayList<String>();
@@ -73,30 +71,37 @@ public class ContactList {
 
 
     public Person[] getContactByRange(String start, String end) {
-        this.start = start;
-        this.end = end;
-        fetchAllNamesHelper(root);
+        Node nodeHolder = root;
+        int counter = 0;
+        for (int i = 0; i < start.length(); i++) {
+            nodeHolder = nodeHolder.brachChildren[start.charAt(i)];
+        }
+        fetchAllContactHelper(nodeHolder, (char) 0, (char) 127);
+        fetchAllContactHelper(root, (char)(start.charAt(0) + 1), (char)(end.charAt(0)));
+        for (int i = 0; i < end.length() - 1; i++) {
+            counter++;
+            nodeHolder = nodeHolder.brachChildren[start.charAt(i)];
+        }
+        nodeHolder = nodeHolder.brachChildren[start.charAt(counter - 1)];
+        fetchAllContactHelper(nodeHolder, (char) 0, (char) 127);
         Person[] personArray = contactList.toArray(new Person[contactList.size()]);
         return personArray;
     }
 
-    public void fetchAllContactHelper(Node root){
-        char s = start.charAt(0);
-        char e = end.charAt(0);
+    public void fetchAllContactHelper(Node root, char s, char e){
             for (int i = s; i < e; i++) {
                 if (root.brachChildren[i] == null) {
                     continue;
-                }
-                else {
+                } else {
                     if (root.brachChildren[i].endOfWord == true) {
                         contactList.add(root.brachChildren[i].person);
-                        fetchAllContactHelper(root.brachChildren[i]);
+                        fetchAllContactHelper(root.brachChildren[i], s, e);
                     } else {
-                        fetchAllContactHelper(root.brachChildren[i]);
+                        fetchAllContactHelper(root.brachChildren[i], s, e);
                     }
                 }
             }
-        }
+    }
 
     // delete
     public boolean deleteContact(String name) {
