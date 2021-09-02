@@ -81,7 +81,7 @@ public class ContactList {
             }
             startCounter++;
         }
-        for (int i = startCounter; i < allNames.length - 1; i++) {
+        for (int i = startCounter; i <= allNames.length - 1; i++) {
             if (end.equals(allNames[i].substring(0, end.length()))) {
                 break;
             }
