@@ -89,4 +89,21 @@ public class contactTesting {
         assertEquals(false, contacts.deleteContact("Daniel"));
 
     }
+
+    @Test
+    public void contactSortTest() {
+        person1.addPhoneNumber("3412343543");
+        person1.addPhoneNumber("34123435543");
+        person1.addPhoneNumber("3241253637");
+        person1.addPhoneNumber("7653545435");
+        person2.addPhoneNumber("3412343543");
+        person2.addPhoneNumber("34123435543");
+        person2.addPhoneNumber("3241253637");
+        person2.addPhoneNumber("7653545435");
+        contacts.createContact(person1);
+        contacts.createContact(person2);
+        assertEquals(true, person1.addPhoneNumber("1545675436"));
+        assertEquals(2, contacts.fetchAllNames().length);
+
+    }
 }

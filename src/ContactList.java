@@ -5,6 +5,11 @@ public class ContactList {
     private static final int R = 128;
     private Node root;
     int nelems;
+    String start;
+    String end;
+    ArrayList<String> nameList = new ArrayList<String>();
+    ArrayList<Person> contactList = new ArrayList<Person>();
+    ArrayList<String> numberList = new ArrayList<String>();
 
     // Node constructor
     private static class Node {
@@ -15,6 +20,7 @@ public class ContactList {
         private Node() {
             endOfWord = false;
             brachChildren = new ContactList.Node[R];
+            person = null;
         }
     }
 
@@ -65,10 +71,32 @@ public class ContactList {
         return nodeHolder.person;
     }
 
-    // sorted heap?
+
     public Person[] getContactByRange(String start, String end) {
-        return null;
+        this.start = start;
+        this.end = end;
+        fetchAllNamesHelper(root);
+        Person[] personArray = contactList.toArray(new Person[contactList.size()]);
+        return personArray;
     }
+
+    public void fetchAllContactHelper(Node root){
+        char s = start.charAt(0);
+        char e = end.charAt(0);
+            for (int i = s; i < e; i++) {
+                if (root.brachChildren[i] == null) {
+                    continue;
+                }
+                else {
+                    if (root.brachChildren[i].endOfWord == true) {
+                        contactList.add(root.brachChildren[i].person);
+                        fetchAllContactHelper(root.brachChildren[i]);
+                    } else {
+                        fetchAllContactHelper(root.brachChildren[i]);
+                    }
+                }
+            }
+        }
 
     // delete
     public boolean deleteContact(String name) {
@@ -107,11 +135,49 @@ public class ContactList {
 
     // sort
     public String[] fetchAllNames() {
-        return null;
+        fetchAllNamesHelper(root);
+        String[] strArray = nameList.toArray(new String[nameList.size()]);
+        return strArray;
+    }
+
+    // sort helper
+    public void fetchAllNamesHelper(Node root){
+        for (int i = 0; i < 127; i++) {
+            if (root.brachChildren[i] == null) {
+                continue;
+            }
+            else {
+                if (root.brachChildren[i].endOfWord == true) {
+                    nameList.add(root.brachChildren[i].person.name);
+                    fetchAllNamesHelper(root.brachChildren[i]);
+                } else {
+                    fetchAllNamesHelper(root.brachChildren[i]);
+                }
+            }
+        }
     }
 
     // sort numbers and no duplicates
     public String[] fetchAllPhoneNumbers() {
-        return null;
+        fetchAllNumbersHelper(root);
+        Collections.sort(numberList);
+        String[] numArray = numberList.toArray(new String[numberList.size()]);
+        return numArray;
+    }
+
+    public void fetchAllNumbersHelper(Node root){
+        for (int i = 0; i < 127; i++) {
+            if (root.brachChildren[i] == null) {
+                continue;
+            }
+            else {
+                if (root.brachChildren[i].endOfWord == true) {
+                    numberList.addAll(root.brachChildren[i].person.pnArray);
+                    fetchAllNamesHelper(root.brachChildren[i]);
+                } else {
+                    fetchAllNamesHelper(root.brachChildren[i]);
+                }
+            }
+        }
     }
 }
