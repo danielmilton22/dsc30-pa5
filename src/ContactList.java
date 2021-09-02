@@ -71,27 +71,26 @@ public class ContactList {
 
 
     public Person[] getContactByRange(String start, String end) {
-        Node nodeHolder = root;
-        int counter = 0;
-        fetchAllContactHelper(root, (int)(start.charAt(0) + 1), (int)(end.charAt(0)));
-        System.out.println(contactList.size());
-        Person[] personArray = contactList.toArray(new Person[contactList.size()]);
-        return personArray;
-    }
-
-    public void fetchAllContactHelper(Node root, int s, int e){
-            for (int i = s; i < e; i++) {
-                if (root.brachChildren[i] == null) {
-                    continue;
-                } else {
-                    if (root.brachChildren[i].endOfWord == true) {
-                        contactList.add(root.brachChildren[i].person);
-                        fetchAllContactHelper(root.brachChildren[i], s, e);
-                    } else {
-                        fetchAllContactHelper(root.brachChildren[i], s, e);
-                    }
-                }
+        String[] allNames = this.fetchAllNames();
+        int startCounter = 0;
+        int endCounter = 0;
+        for (int i = 0; i < allNames.length - 1; i++) {
+            if (start == allNames[i].substring(0, start.length())) {
+                break;
             }
+            startCounter++;
+        }
+        for (int i = startCounter; i < allNames.length; i++) {
+            if (end == allNames[i].substring(0, end.length())) {
+                break;
+            }
+            endCounter++;
+        }
+        for (int i = startCounter; i < endCounter - 1; i++) {
+            contactList.add(getContact(allNames[i]));
+        }
+        Person[] pArray = contactList.toArray(new Person[contactList.size()]);
+        return pArray;
     }
 
     // delete
