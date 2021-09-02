@@ -2,11 +2,14 @@ import java.util.*;
 
 public class ContactList {
 
-    Person person;
     int nelems;
-    TrieTree trieTree = new TrieTree();
-
+    TrieTree trieTree;
     // add
+
+    public ContactList() {
+        this.trieTree = new TrieTree();
+    }
+
     public boolean createContact(Person person) {
         nelems++;
         return trieTree.insert(person);
