@@ -74,19 +74,21 @@ public class ContactList {
         String[] allNames = this.fetchAllNames();
         int startCounter = 0;
         int endCounter = 0;
-        for (int i = 0; i < allNames.length - 1; i++) {
+        for (int i = 0; i < allNames.length; i++) {
             if (start == allNames[i].substring(0, start.length())) {
                 break;
             }
             startCounter++;
         }
+        startCounter--;
+        endCounter = startCounter;
         for (int i = startCounter; i < allNames.length; i++) {
             if (end == allNames[i].substring(0, end.length())) {
                 break;
             }
             endCounter++;
         }
-        for (int i = startCounter; i < endCounter - 1; i++) {
+        for (int i = startCounter; i < endCounter; i++) {
             contactList.add(getContact(allNames[i]));
         }
         Person[] pArray = contactList.toArray(new Person[contactList.size()]);
