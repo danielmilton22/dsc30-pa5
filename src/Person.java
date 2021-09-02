@@ -27,8 +27,12 @@ public class Person {
         return pnArray;
     }
 
-    public boolean deletePhoneNumber(String pn)
-            throws IllegalArgumentException{
+    public boolean deletePhoneNumber(String pn) {
+        if (pn instanceof String) {
+            System.out.println("Valid");
+        } else {
+            throw new IllegalArgumentException();
+        }
         if (pnArray.size() < 1) {
             throw new IllegalArgumentException();
         }
