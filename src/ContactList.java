@@ -74,16 +74,16 @@ public class ContactList {
         String[] allNames = this.fetchAllNames();
         int startCounter = 0;
         int endCounter = 0;
+        System.out.println(allNames[0].substring(0, start.length()));
         for (int i = 0; i < allNames.length; i++) {
-            if (start == allNames[i].substring(0, start.length())) {
+            if (start.equals(allNames[i].substring(0, start.length()))) {
                 break;
             }
             startCounter++;
         }
-        startCounter--;
-        endCounter = startCounter;
-        for (int i = startCounter; i < allNames.length; i++) {
-            if (end == allNames[i].substring(0, end.length())) {
+        endCounter = startCounter + 1;
+        for (int i = endCounter; i < allNames.length; i++) {
+            if (end.equals(allNames[i].substring(0, end.length()))) {
                 break;
             }
             endCounter++;

@@ -122,7 +122,7 @@ public class contactTesting {
         contacts.createContact(person1);
         contacts.createContact(person2);
         assertEquals(true, person1.addPhoneNumber("1545675436"));
-        assertEquals(1, contacts.getContactByRange("Dan", "E").length);
+        assertEquals(1, contacts.getContactByRange("A", "E").length);
 
     }
 
