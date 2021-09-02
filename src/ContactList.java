@@ -3,30 +3,25 @@ import java.util.*;
 public class ContactList {
 
     Person person;
-    ArrayList<Person> personArray;
     int nelems;
-    HashMap<String, String>  hashStructure;
+    TrieTree trieTree = new TrieTree();
 
     // add
     public boolean createContact(Person person) {
-        if (hashStructure.get(person) != null) {
-            return false;
-        }
         nelems++;
-        int sizeCatcher = personArray.size();
-        personArray.add(person);
-        hashStructure.put(person.name, String.valueOf(sizeCatcher));
-        return true;
+        return trieTree.insert(person);
     }
 
     // contains
     public boolean lookupContact(String name) {
-        return false;
+        boolean search = trieTree.search(name);
+        return search;
     }
 
     // search
     public Person getContact(String name) {
-        return null;
+        Person getContact = trieTree.get(name);
+        return getContact;
     }
 
     // sorted heap?
