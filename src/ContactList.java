@@ -75,20 +75,16 @@ public class ContactList {
         int startCounter = 0;
         int endCounter = 0;
         System.out.println(allNames[0].substring(0, start.length()));
-        for (int i = 0; i < allNames.length; i++) {
+        for (int i = 0; i <= allNames.length; i++) {
             if (start.equals(allNames[i].substring(0, start.length()))) {
                 break;
             }
             startCounter++;
         }
-        endCounter = startCounter;
-        for (int i = endCounter; i < allNames.length; i++) {
+        for (int i = startCounter; i < allNames.length; i++) {
             if (end.equals(allNames[i].substring(0, end.length()))) {
                 break;
             }
-            endCounter++;
-        }
-        for (int i = startCounter; i < endCounter; i++) {
             contactList.add(getContact(allNames[i]));
         }
         Person[] pArray = contactList.toArray(new Person[contactList.size()]);
