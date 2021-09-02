@@ -5,7 +5,6 @@ public class ContactList {
     private static final int R = 128;
     private Node root;
     int nelems;
-    ContactList trieTree;
 
     // Node constructor
     private static class Node {
@@ -21,7 +20,8 @@ public class ContactList {
     }
 
     public ContactList() {
-        this.trieTree = new ContactList();
+        nelems = 0;
+        root = new Node();
     }
 
     public boolean createContact(Person person) {
@@ -59,7 +59,7 @@ public class ContactList {
         Node nodeHolder = root;
         for (char c: name.toCharArray()) {
             if (nodeHolder.brachChildren[(int) c] == null) {
-                return nodeHolder.person;
+                return null;
             }
             nodeHolder = nodeHolder.brachChildren[(int) c];
         }
