@@ -11,9 +11,10 @@ import static org.junit.Assert.*;
 
 public class contactTesting {
     ArrayList<String> pn = new ArrayList<String>();
+    ArrayList<String> pn2 = new ArrayList<String>();
     ContactList contacts = new ContactList();
     Person person1 = new Person("Daniel", pn);
-    Person person2 = new Person("Aria", pn);
+    Person person2 = new Person("Aria", pn2);
     Person person3 = new Person("Brian", pn);
     Person person4 = new Person("Jessy", pn);
     Person person5 = new Person("Chris", pn);
@@ -104,6 +105,43 @@ public class contactTesting {
         contacts.createContact(person2);
         assertEquals(true, person1.addPhoneNumber("1545675436"));
         assertEquals(2, contacts.fetchAllNames().length);
+        assertEquals("Daniel", contacts.fetchAllNames()[1]);
+
+    }
+
+    @Test
+    public void contactRangeTest() {
+        person1.addPhoneNumber("3412343543");
+        person1.addPhoneNumber("34123435543");
+        person1.addPhoneNumber("3241253637");
+        person1.addPhoneNumber("7653545435");
+        person2.addPhoneNumber("3412343544");
+        person2.addPhoneNumber("34123435544");
+        person2.addPhoneNumber("3241253638");
+        person2.addPhoneNumber("7653545436");
+        contacts.createContact(person1);
+        contacts.createContact(person2);
+        assertEquals(true, person1.addPhoneNumber("1545675436"));
+        assertEquals(1, contacts.getContactByRange("Dan", "E").length);
+
+    }
+
+    @Test
+    public void sortNumbersTest() {
+        contacts.createContact(person1);
+        contacts.createContact(person2);
+        person1.addPhoneNumber("3412343543");
+        person1.addPhoneNumber("34123435543");
+        person1.addPhoneNumber("3241253637");
+        person1.addPhoneNumber("7653545435");
+        person2.addPhoneNumber("3412343544");
+        person2.addPhoneNumber("34123435544");
+        person2.addPhoneNumber("3241253638");
+        person2.addPhoneNumber("7653545436");
+        assertEquals(true, person1.addPhoneNumber("1545675436"));
+        assertEquals(9, contacts.fetchAllPhoneNumbers().length);
+        assertEquals("1545675436", contacts.fetchAllPhoneNumbers()[0]);
+        assertEquals("3241253637", contacts.fetchAllPhoneNumbers()[1]);
 
     }
 }

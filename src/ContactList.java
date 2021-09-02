@@ -76,19 +76,14 @@ public class ContactList {
         for (int i = 0; i < start.length(); i++) {
             nodeHolder = nodeHolder.brachChildren[start.charAt(i)];
         }
-        fetchAllContactHelper(nodeHolder, (char) 0, (char) 127);
-        fetchAllContactHelper(root, (char)(start.charAt(0) + 1), (char)(end.charAt(0)));
-        for (int i = 0; i < end.length() - 1; i++) {
-            counter++;
-            nodeHolder = nodeHolder.brachChildren[start.charAt(i)];
-        }
-        nodeHolder = nodeHolder.brachChildren[start.charAt(counter - 1)];
-        fetchAllContactHelper(nodeHolder, (char) 0, (char) 127);
+        fetchAllContactHelper(nodeHolder, 0, 127);
+        fetchAllContactHelper(root, (int)(start.charAt(0) + 1), (int)(end.charAt(0)));
+        System.out.println(contactList.size());
         Person[] personArray = contactList.toArray(new Person[contactList.size()]);
         return personArray;
     }
 
-    public void fetchAllContactHelper(Node root, char s, char e){
+    public void fetchAllContactHelper(Node root, int s, int e){
             for (int i = s; i < e; i++) {
                 if (root.brachChildren[i] == null) {
                     continue;
@@ -164,6 +159,7 @@ public class ContactList {
 
     // sort numbers and no duplicates
     public String[] fetchAllPhoneNumbers() {
+        numberList.clear();
         fetchAllNumbersHelper(root);
         Collections.sort(numberList);
         String[] numArray = numberList.toArray(new String[numberList.size()]);
@@ -178,9 +174,9 @@ public class ContactList {
             else {
                 if (root.brachChildren[i].endOfWord == true) {
                     numberList.addAll(root.brachChildren[i].person.pnArray);
-                    fetchAllNamesHelper(root.brachChildren[i]);
+                    fetchAllNumbersHelper(root.brachChildren[i]);
                 } else {
-                    fetchAllNamesHelper(root.brachChildren[i]);
+                    fetchAllNumbersHelper(root.brachChildren[i]);
                 }
             }
         }
