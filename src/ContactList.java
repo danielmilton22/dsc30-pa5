@@ -73,10 +73,6 @@ public class ContactList {
     public Person[] getContactByRange(String start, String end) {
         Node nodeHolder = root;
         int counter = 0;
-        for (int i = 0; i < start.length(); i++) {
-            nodeHolder = nodeHolder.brachChildren[start.charAt(i)];
-        }
-        fetchAllContactHelper(nodeHolder, 0, 127);
         fetchAllContactHelper(root, (int)(start.charAt(0) + 1), (int)(end.charAt(0)));
         System.out.println(contactList.size());
         Person[] personArray = contactList.toArray(new Person[contactList.size()]);
