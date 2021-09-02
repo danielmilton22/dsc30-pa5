@@ -74,7 +74,6 @@ public class ContactList {
         String[] allNames = this.fetchAllNames();
         int startCounter = 0;
         int endCounter = 0;
-        System.out.println(allNames[0].substring(0, start.length()));
         for (int i = 0; i <= allNames.length - 1; i++) {
             if (start.equals(allNames[i].substring(0, start.length()))) {
                 break;
@@ -82,7 +81,8 @@ public class ContactList {
             startCounter++;
         }
         for (int i = startCounter; i <= allNames.length - 1; i++) {
-            if (end.equals(allNames[i].substring(0, end.length()))) {
+            System.out.println(allNames[i].substring(0, end.length()).compareTo(end));
+            if (allNames[i].substring(0, end.length()).compareTo(end) > 0 || allNames[i].substring(0, end.length()).compareTo(end) == 0) {
                 break;
             }
             contactList.add(getContact(allNames[i]));
