@@ -80,7 +80,7 @@ public class ContactList {
             startCounter++;
         }
         for (int i = startCounter; i < allNames.length - 1; i++) {
-            if (allNames[i].substring(0, end.length() - 1).compareTo(end) > 0 || allNames[i].substring(0, end.length() - 1).compareTo(end) == 0) {
+            if (allNames[i].substring(0, end.length()).compareTo(end) >= 0) {
                 break;
             }
             contactList.add(getContact(allNames[i]));
