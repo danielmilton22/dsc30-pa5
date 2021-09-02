@@ -29,7 +29,13 @@ public class Person {
 
     public boolean deletePhoneNumber(String pn) {
         if (pn instanceof String) {
-            System.out.println("Valid");
+            if (pn.length() <= 7) {
+                for (char c: pn.toCharArray()) {
+                    if ((int) c < 48 || (int) c > 57) {
+                        throw new IllegalArgumentException();
+                    }
+                }
+            }
         } else {
             throw new IllegalArgumentException();
         }
