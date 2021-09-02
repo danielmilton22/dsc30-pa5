@@ -28,7 +28,7 @@ public class Person {
     }
 
     public boolean deletePhoneNumber(String pn) {
-        if (pn != null) {
+        if (pn instanceof String) {
             if (pn.length() <= 7) {
                 for (char c: pn.toCharArray()) {
                     if ((int) c < 48 || (int) c > 57) {
@@ -39,7 +39,10 @@ public class Person {
         } else {
             throw new IllegalArgumentException();
         }
-        if (pnArray.size() < 1) {
+        if (pn == null) {
+            throw new IllegalArgumentException();
+        }
+        if (pnArray.size() < 2) {
             throw new IllegalArgumentException();
         }
         if (pnArray.contains(pn)){
