@@ -116,13 +116,19 @@ public class contactTesting {
         person1.addPhoneNumber("3241253637");
         person1.addPhoneNumber("7653545435");
         person2.addPhoneNumber("3412343544");
+        person3.addPhoneNumber("3412343544");
+        person4.addPhoneNumber("3412343544");
+        person5.addPhoneNumber("3412343544");
         person2.addPhoneNumber("34123435544");
         person2.addPhoneNumber("3241253638");
         person2.addPhoneNumber("7653545436");
         contacts.createContact(person1);
         contacts.createContact(person2);
+        contacts.createContact(person3);
+        contacts.createContact(person4);
+        contacts.createContact(person5);
         assertEquals(true, person1.addPhoneNumber("1545675436"));
-        assertEquals(1, contacts.getContactByRange("Aria", "Danm").length);
+        assertEquals(1, contacts.getContactByRange("Aria", "Jessy").length);
 
     }
 
