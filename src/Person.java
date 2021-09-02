@@ -27,7 +27,8 @@ public class Person {
         return pnArray;
     }
 
-    public boolean deletePhoneNumber(String pn) {
+    public boolean deletePhoneNumber(String pn)
+            throws IllegalArgumentException{
         if (pnArray.size() < 1) {
             throw new IllegalArgumentException();
         }
