@@ -71,6 +71,7 @@ public class ContactList {
 
 
     public Person[] getContactByRange(String start, String end) {
+        contactList.clear();
         String[] allNames = this.fetchAllNames();
         int startCounter = 0;
         for (int i = 0; i <= allNames.length - 1; i++) {
