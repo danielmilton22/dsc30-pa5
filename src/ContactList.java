@@ -126,6 +126,7 @@ public class ContactList {
 
     // sort
     public String[] fetchAllNames() {
+        nameList.clear();
         fetchAllNamesHelper(root);
         String[] strArray = nameList.toArray(new String[nameList.size()]);
         return strArray;
