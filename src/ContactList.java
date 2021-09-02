@@ -73,7 +73,6 @@ public class ContactList {
     public Person[] getContactByRange(String start, String end) {
         String[] allNames = this.fetchAllNames();
         int startCounter = 0;
-        int endCounter = 0;
         for (int i = 0; i <= allNames.length - 1; i++) {
             if (start.equals(allNames[i].substring(0, start.length()))) {
                 break;
@@ -81,7 +80,7 @@ public class ContactList {
             startCounter++;
         }
         for (int i = startCounter; i <= allNames.length - 1; i++) {
-            if (allNames[i].substring(0, end.length()).compareTo(end) < 0 || allNames[i].substring(0, end.length()).compareTo(end) == 0) {
+            if (allNames[i].substring(0, end.length()).compareTo(end) > 0 || allNames[i].substring(0, end.length()).compareTo(end) == 0) {
                 break;
             }
             contactList.add(getContact(allNames[i]));
