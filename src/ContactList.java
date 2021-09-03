@@ -86,7 +86,6 @@ public class ContactList {
             }
             contactList.add(getContact(allNames[i]));
         }
-        contactList.add(getContact(allNames[allNames.length - 1]));
         Person[] pArray = contactList.toArray(new Person[contactList.size()]);
         return pArray;
     }
