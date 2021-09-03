@@ -76,7 +76,7 @@ public class ContactList {
         } else {
             throw new IllegalArgumentException();
         }
-        if (start.compareTo(end) > 0) {
+        if (start.compareTo(end) >= 0) {
             throw new IllegalArgumentException();
         }
         
