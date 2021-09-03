@@ -75,7 +75,7 @@ public class ContactList {
         String[] allNames = this.fetchAllNames();
         int startCounter = 0;
         for (int i = 0; i <= allNames.length - 1; i++) {
-            if (allNames[i].substring(0, start.length()).compareTo(start) == 0) {
+            if (allNames[i].substring(0, start.length()).compareTo(start) >= 0) {
                 if (allNames.length == 1) {
                     contactList.add(getContact(allNames[i]));
                 }
