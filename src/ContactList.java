@@ -76,10 +76,14 @@ public class ContactList {
         int startCounter = 0;
         for (int i = 0; i <= allNames.length - 1; i++) {
             if (allNames[i].substring(0, start.length()).compareTo(start) == 0) {
+                if (allNames.length == 1) {
+                    contactList.add(getContact(allNames[i]));
+                }
                 break;
             }
             startCounter++;
         }
+        System.out.println(startCounter);
         for (int i = startCounter; i <= allNames.length - 1; i++) {
             if (allNames[i].substring(0, end.length()).compareTo(end) >= 0) {
                 break;
@@ -87,6 +91,7 @@ public class ContactList {
             contactList.add(getContact(allNames[i]));
         }
         Person[] pArray = contactList.toArray(new Person[contactList.size()]);
+        System.out.println(contactList.size());
         return pArray;
     }
 
