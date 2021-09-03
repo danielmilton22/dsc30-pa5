@@ -168,10 +168,11 @@ public class ContactList {
 
     // sort numbers and no duplicates
     public String[] fetchAllPhoneNumbers() {
-       
+        numberList.clear();
         fetchAllNumbersHelper(root);
         Collections.sort(numberList);
         String[] numArray = numberList.toArray(new String[numberList.size()]);
+        numArray = new HashSet<String>(Arrays.asList(numArray)).toArray(new String[0]);
         return numArray;
     }
 
