@@ -74,13 +74,13 @@ public class ContactList {
         contactList.clear();
         String[] allNames = this.fetchAllNames();
         int startCounter = 0;
-        for (int i = 0; i <= allNames.length - 1; i++) {
+        for (int i = 0; i <= allNames.length; i++) {
             if (allNames[i].substring(0, start.length()).compareTo(start) == 0) {
                 break;
             }
             startCounter++;
         }
-        for (int i = startCounter; i < allNames.length - 1; i++) {
+        for (int i = startCounter; i <= allNames.length; i++) {
             if (allNames[i].substring(0, end.length()).compareTo(end) >= 0) {
                 break;
             }
