@@ -176,7 +176,7 @@ public class ContactList {
     }
 
     public void fetchAllNumbersHelper(Node root){
-        for (int i = 0; i < 127; i++) {
+        for (int i = 0; i <= 128; i++) {
             if (root.brachChildren[i] == null) {
                 continue;
             }
