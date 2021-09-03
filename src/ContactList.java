@@ -70,10 +70,20 @@ public class ContactList {
     }
 
 
-    public Person[] getContactByRange(String start, String end) {
+     public Person[] getContactByRange(String start, String end) {
+        if (start instanceof String && end instanceof String) {
+            System.out.println("Valid");
+        } else {
+            throw new IllegalArgumentException();
+        }
+        if (start.compareTo(end) < 0) {
+            throw new IllegalArgumentException();
+        }
+        
         contactList.clear();
         String[] allNames = this.fetchAllNames();
         int startCounter = 0;
+
         for (int i = 0; i <= allNames.length - 1; i++) {
             if (allNames[i].substring(0, start.length()).compareTo(start) >= 0) {
                 if (allNames.length == 1) {
@@ -83,6 +93,7 @@ public class ContactList {
             }
             startCounter++;
         }
+
         System.out.println(startCounter);
         for (int i = startCounter; i <= allNames.length - 1; i++) {
             if (allNames[i].substring(0, end.length()).compareTo(end) >= 0) {
