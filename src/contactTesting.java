@@ -128,7 +128,7 @@ public class contactTesting {
         contacts.createContact(person4);
         contacts.createContact(person5);
         assertEquals(true, person1.addPhoneNumber("1545675436"));
-        assertEquals(1, contacts.getContactByRange("Aria", "B").length);
+        assertEquals(1, contacts.getContactByRange("Ariaewd", "Jessy").length);
 
     }
 
